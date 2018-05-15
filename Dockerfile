@@ -4,11 +4,12 @@ RUN go get -d -v golang.org/x/net/html
 RUN go get -d -v github.com/gorilla/handlers
 RUN go get -d -v github.com/gorilla/mux
 COPY main.go .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o hwfunc .
 
 FROM alpine:latest
 WORKDIR /root/
-COPY --from=builder /go/src/github.com/greendavegreen/hwfunc/main .
+COPY static static
+COPY --from=builder /go/src/github.com/greendavegreen/hwfunc/hwfunc .
 
 EXPOSE 8080
-CMD ["./main"]
+CMD ["./hwfunc"]
