@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # docker hub username
 USERNAME=dockreg.lebanon.cd-adapco.com:5000
 # image name
